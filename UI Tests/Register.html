@@ -25,8 +25,7 @@
                         style="width:8%" /><strong>Damage Control</strong></a></li>
         </ul>
         <ul>
-            <!--
-            <li>
+           <!-- <li>
                 <details role="list" dir="rtl">
                     <summary aria-haspopup="listbox" role="link" class="secondary">Theme</summary>
                     <ul role="listbox">
@@ -40,8 +39,8 @@
                 <details role="list" dir="rtl">
                     <summary aria-haspopup="listbox" role="link" class="secondary">Pages</summary>
                     <ul role="listbox">
-                        <li><a href="#">Log In</a></li>
-                        <li><a href="Register.html">Register</a></li>
+                        <li><a href="NewLogin.html">Log In</a></li>
+                        <li><a href="#">Register</a></li>
                         <li><a href="../classless/">Class-less</a></li>
                         <li><a href="../basic-template/">Basic template</a></li>
                         <li><a href="../company/">Company</a></li>
@@ -58,30 +57,41 @@
     <main class="container">
         <article class="grid">
             <div>
-                    <h1>Sign in</h1>
-                <form>
-                    <input type="text" name="login" placeholder="Login" aria-label="Login" autocomplete="nickname"
+                
+                    <h1 style="margin: 0;">Register</h1>
+                   <!-- <h2>A minimalist layout for Login pages</h2>-->
+                
+                <form style="margin-top: 0;">
+                    <input type="text" name="username" placeholder="Username" aria-label="Username" autocomplete="nickname"
                         required>
                     <input type="password" name="password" placeholder="Password" aria-label="Password"
                         autocomplete="current-password" required>
+                        <input type="text" name="First Name" placeholder="First Name" required style="width: 49%; margin-right: 1px;">
+                        <input type="text" name="Last Name" placeholder="Last Name" required style="width: 49%; margin-left: 0;">
+                        <input type="text" name="Email" placeholder="Email" aria-label="Email" autocomplete="nickname"
+                        required>
+                        <input type="tel" name="PhoneNumber" placeholder="xxx-xxx-xxxx" aria-label="Phone Number" required>
                     <fieldset>
-                        <label for="remember">
-                            <input type="checkbox" role="switch" id="remember" name="remember">
-                            Remember me
-                        </label>
+
                     </fieldset>
-                    <button type="submit" class="contrast" onclick="event.preventDefault()">Login</button>
+                    <button type="submit" class="contrast" onclick="event.preventDefault()">Register</button>
                 </form>
             </div>
-            <div><img src="DamageControlLogo.png" /></div>
+            <div style="margin-top: 15%;"><img src="DamageControlLogo.png" /></div>
         </article>
     </main><!-- ./ Main -->
 
     <!-- Footer -->
-    <footer class="container-fluid">
+    <footer class="container-fluid" style="width:100%;">
         <small>Built with <a href="https://picocss.com" class="secondary">Pico</a> • <a
                 href="https://github.com/picocss/examples/tree/master/sign-in/" class="secondary">Source
                 code</a></small>
+                <div style="display: block; text-align: center; font-size: small;">
+                    <a href="NewLogin.html">Log In</a>
+                    <a href="NewLogin.html">Register</a>
+                    <a href="NewLogin.html">About Us</a>
+                </div>
+
     </footer><!-- ./ Footer -->
 
     <!-- Minimal theme switcher -->
