@@ -1,32 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pico-master/css/pico.min.css">
-    <title>Document</title>
-</head>
-<body style="display: flex; width: 100%; background-color: #616161; margin: 0%; height: 100%">
-    <header class = "container">
-        <a href="Index.html" class="contrast"><img src="DamageControlLogo.png" style="padding: 0; width: 6%"/></a>
-        <div style="display:flex; vertical-align: top;">
-        <h1 style="color: #FFC400; text-decoration-line: none; padding: 0%; vertical-align: top;"><a href="Index.html" style="color: #FFC400; text-decoration-line: none;">Damage Control: </a>The heroes save you from the villain. We save you from the damage.</h1>
-        </div>
-        <br />
-        <nav style="display: inline; padding-bottom: 0; margin-bottom: 0;">
-                <a href="Index.html" style="font-size: large; color: #FFC400; margin-right: 5%; text-decoration: none; padding-bottom: 0%;">Home Page</a>
-                <a href="Index.html" style="font-size: large; color: #FFC400; margin-right: 5%; text-decoration: none; padding-bottom: 0%;">Ticket Submission</a>
-                <a href="Index.html" style="font-size: large; color: #FFC400; margin-right: 5%; text-decoration: none; padding-bottom: 0%;">Log In</a>
-                <a href="Index.html" style="font-size: large; color: #FFC400; margin-right: 5%; text-decoration: none; padding-bottom: 0%;">Register</a>
-                <a href="Index.html" style="font-size: large; color: #FFC400; margin-right: 5%; text-decoration: none; padding-bottom: 0%;">About Us</a>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Company example • Pico.css</title>
+    <meta name="description" content="A classic company or blog layout with a sidebar. Built with Pico CSS.">
+    <link rel="shortcut icon" href="https://picocss.com/favicon.ico">
+    <link rel="canonical" href="https://picocss.com/examples/company/">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="pico-master/css/pico.min.css">
+
+    <!-- Custom styles for this example -->
+</head>
+
+<body>
+
+    <!-- Hero -->
+    <div class="hero" data-theme="dark">
+        <nav class="container-fluid">
+            <ul>
+                <li><a href="./" class="contrast" onclick="event.preventDefault()"><img src="DamageControlLogo.png"
+                            style="width:8%" /><strong>Damage Control</strong></a>
+                </li>
+            </ul>
+            <ul>
+                <!--<li>
+                    <details role="list" dir="rtl">
+                        <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+                        <ul role="listbox">
+                            <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                            <li><a href="#" data-theme-switcher="light">Light</a></li>
+                            <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li>-->
+                    <details role="list" dir="rtl">
+                        <summary aria-haspopup="listbox" role="link" class="contrast">Pages</summary>
+                        <ul role="listbox">
+                            <li><a href="NewLogin.html">Log In</a></li>
+                            <li><a href="Register.html">Register</a></li>
+                            <li><a href="../classless/">About Us</a></li>
+                            <li><a href="../basic-template/">Basic template</a></li>
+                            <li><a href="../company/">Company</a></li>
+                            <li><a href="../google-amp/">Google Amp</a></li>
+                            <li><a href="../sign-in/">Sign in</a></li>
+                            <li><a href="../bootstrap-grid/">Bootstrap grid</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
         </nav>
-    </header>
+        <header class="container">
+            <hgroup>
+                <h1>Damage Control</h1>
+                <h2>Because the heroes need someone to clean up after them</h2>
+            </hgroup>
+            <p><a href="NewLogin.html" role="button">Login</a></p>
+        </header>
+    </div><!-- ./ Hero -->
+
+    <!-- Main -->
     <main class="container">
-    <p class="grid">Trying to fix the page</p></main>
-    <footer style="background-color: #212121; width: 100%; position:absolute; right: 0; left: 0; bottom: 0; text-align: center;">
-        <p>Damage Control is an insurance company dedicated to protecting you from any super-human damages that may occur. If you are interested in hearing more, please contact 860-234-9312</p>
-    </footer>
+        <div class="grid">
+
+            <section>
+                <hgroup>
+                    <h2>Avengers Civil War</h2>
+                    <h3>How will this impact my coverage</h3>
+                </hgroup>
+                <p>The Avengers may have split up, but we're still here to look after your best interests. Find out how
+                    we're going to protect you in this turbulent time</p>
+
+                <h3>Web-Head's webbing: Does my insurance cover removal of Spider-Man's webs?</h3>
+                <p>Spider-Man's webbing may come in handy to capture some bad guys, but that doesn't mean you want it to
+                    stay plastered all over your windows. Click here to find our policy regarding removal of webbing</p>
+                <h3>Multi-Verse Travel: Risks, Rewards, and Coverage</h3>
+                <p>It's no secret universe hopping is the newest trend, but how safe is it? Check here to learn how to
+                    travel safely and how we can protect you if something goes wrong</p>
+            </section>
+
+            <!--<aside>
+                <a href="#" aria-label="Example" onclick="event.preventDefault()"><img
+                        src="assets/maarten-deckers-T5nXYXCf50I-unsplash-1500x750.jpg" alt="Architecture"></a>
+                <p>
+                    <a href="#" onclick="event.preventDefault()">Donec sit amet</a><br>
+                    <small>Class aptent taciti sociosqu ad litora torquent per conubia nostra</small>
+                </p>
+                <a href="#" aria-label="Example" onclick="event.preventDefault()"><img
+                        src="assets/daniel-von-appen-tb4heMa-ZRo-unsplash-1500-750.jpg" alt="Architecture"></a>
+                <p>
+                    <a href="#" onclick="event.preventDefault()">Suspendisse potenti</a><br>
+                    <small>Proin non condimentum tortor. Donec in feugiat sapien.</small>
+                </p>
+                <a href="#" aria-label="Example" onclick="event.preventDefault()"><img
+                        src="assets/matthew-hamilton-Ru3Ap8TNcsk-unsplash-1500-750.jpg" alt="Architecture"></a>
+                <p>
+                    <a href="#" onclick="event.preventDefault()">Nullam lobortis placerat aliquam</a><br>
+                    <small>Maecenas vitae nibh blandit dolor commodo egestas vel eget neque. Praesent semper justo orci,
+                        vel imperdiet mi auctor in.</small>
+                </p>
+            </aside>-->
+
+        </div>
+    </main><!-- ./ Main -->
+
+    <!-- Subscribe -->
+    <section aria-label="Subscribe example">
+        <div class="container">
+            <article>
+                <hgroup>
+                    <h2>Subscribe</h2>
+                    <h3>Litora torquent per conubia nostra</h3>
+                </hgroup>
+                <form class="grid">
+                    <input type="text" id="firstname" name="firstname" placeholder="First name" aria-label="First name"
+                        required>
+                    <input type="email" id="email" name="email" placeholder="Email address" aria-label="Email address"
+                        required>
+                    <button type="submit" onclick="event.preventDefault()">Subscribe</button>
+                </form>
+            </article>
+        </div>
+    </section><!-- ./ Subscribe -->
+
+    <!-- Footer -->
+    <footer class="container">
+        <small>Built with <a href="https://picocss.com">Pico</a> • <a
+                href="https://github.com/picocss/examples/tree/master/company/">Source code</a></small>
+    </footer><!-- ./ Footer -->
+
+    <!-- Minimal theme switcher -->
+    <script src="minimal-theme-switcher.js"></script>
+    <script src="custom.js"></script>
+
 </body>
+
 </html>
