@@ -1,6 +1,8 @@
 # P2DamageControlFrontEnd
 --Project Overview:
---The project is meant to set up a manner in which clients of Damage Control can submit insurance claims from damage caused by super-human related events. The employees of Damage Control will then be able to log in to the website and approve or reject any individual claim based on the Damage Control Criteria.
+
+This project is meant to create a comprehensive insurance website that allows users to file claims against individuals specified in the Marvel API. Employees will also be able to log into the site to approve or deny those claims that are at or below the employee's access level.
+
 --Minimum Viable Product
   • All users should be able to log in
   •	All users should be able to register
