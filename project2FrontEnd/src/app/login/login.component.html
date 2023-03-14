@@ -2,10 +2,10 @@
     <article class="grid">
         <div>
                 <h1>Sign in</h1>
-            <form>
-                <input type="text" name="login" placeholder="Login" aria-label="Login" autocomplete="nickname"
+            <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                <input type="text" [(ngModel)]="credentials.username"  name="login" placeholder="Login" aria-label="Login" autocomplete="nickname"
                     required>
-                <input type="password" name="password" placeholder="Password" aria-label="Password"
+                <input type="password" name="password" [(ngModel)]="credentials.password" class="form-control" placeholder="Password" aria-label="Password"
                     autocomplete="current-password" required>
                 <fieldset>
                     <label for="remember">
@@ -13,7 +13,7 @@
                         Remember me
                     </label>
                 </fieldset>
-                <button type="submit" class="contrast" (click)="LogIn()">Login</button>
+                <button type="submit" class="contrast" [disabled] = "!loginForm.valid">Login</button>
             </form>
         </div>
         <div><img src="" /></div>

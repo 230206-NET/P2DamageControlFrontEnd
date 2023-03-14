@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticatedResponse, LoginModel } from '../_interfaces/login.model';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { AuthenticatedResponse, LoginModel } from '../_interfaces/login.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  invalidLogin: boolean;
+  invalidLogin: boolean = false;
   credentials: LoginModel = {username:'', password:''};
   constructor(private router: Router, private http: HttpClient) { }
   ngOnInit(): void {
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
   login = ( form: NgForm) => {
     if (form.valid) {
-      this.http.post<AuthenticatedResponse>("https://localhost:5001/api/auth/login", this.credentials, {
+      this.http.post<AuthenticatedResponse>("https://localhost:5025/login", this.credentials, {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({
