@@ -34,7 +34,8 @@
             ],
             "scripts": [
               "src/assets/js/minimal-theme-switcher.js",
-              "src/assets/js/custom.js"
+              "src/assets/js/custom.js",
+              "src/assets/js/Login.js"
             ]
           },
           "configurations": {
