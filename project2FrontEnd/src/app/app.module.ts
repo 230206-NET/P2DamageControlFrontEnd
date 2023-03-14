@@ -11,6 +11,7 @@ import { PostLoginComponent } from './post-login/post-login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -22,7 +23,8 @@ export function tokenGetter() {
     NavbarComponent,
     HomePageComponent,
     PostLoginComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:5025"],
+        allowedDomains: ["http://localhost:5025"],
         disallowedRoutes: []
       }
     })

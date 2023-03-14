@@ -1,0 +1,24 @@
+<main class="container">
+    <article class="grid">
+        <div>
+
+            <h1 style="margin: 0;">Register</h1>
+            <!-- <h2>A minimalist layout for Login pages</h2>-->
+
+            <form style="margin-top: 0;" #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                <input type="text" name="username" [(ngModel)]="info.Username" placeholder="Username" aria-label="Username"
+                    autocomplete="nickname" required>
+                <input type="password" name="password" [(ngModel)]="info.Password" placeholder="Password" aria-label="Password"
+                    autocomplete="current-password" required>
+                <input type="text" name="Full Name" [(ngModel)]="info.FullName" placeholder="Full Name" required>
+                <input type="text" name="Email" [(ngModel)]="info.Email" placeholder="Email" aria-label="Email" autocomplete="nickname"
+                    required>
+                <fieldset>
+
+                </fieldset>
+                <button type="submit" class="contrast" [disabled] = "!registerForm.valid">Register</button>
+            </form>
+        </div>
+        <div style="margin-top: 15%;"><img src="DamageControlLogo.png" /></div>
+    </article>
+</main>

@@ -3,9 +3,9 @@
         <div>
                 <h1>Sign in</h1>
             <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-                <input type="text" [(ngModel)]="credentials.username"  name="login" placeholder="Login" aria-label="Login" autocomplete="nickname"
+                <input type="text" [(ngModel)]="credentials.Username"  name="Username" placeholder="Login" aria-label="Login" autocomplete="nickname"
                     required>
-                <input type="password" name="password" [(ngModel)]="credentials.password" class="form-control" placeholder="Password" aria-label="Password"
+                <input type="password" name="password" [(ngModel)]="credentials.Password" class="form-control" placeholder="Password" aria-label="Password"
                     autocomplete="current-password" required>
                 <fieldset>
                     <label for="remember">
