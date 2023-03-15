@@ -1,10 +1,91 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as CryptoJS from 'crypto-js';
+import jwt_decode from 'jwt-decode';
+
+import {Router} from '@angular/router';
+import { AuthenticatedResponse } from '../_interfaces/AuthenticatedResponse';
+import { FormsModule, NgForm } from '@angular/forms';
+import { NewTicketModel } from '../_interfaces/NewClaim.model';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-ticket-form',
   templateUrl: './ticket-form.component.html',
   styleUrls: ['./ticket-form.component.scss']
 })
-export class TicketFormComponent {
+export class TicketFormComponent implements OnInit{
+  
+  NewClaim: NewTicketModel = {
+    ClientId: 0,
+    Amount: 0,
+    Date: '',
+    DamagerInfo: 0,
+    Description: ''
+  }
+  constructor(private router: Router, private http: HttpClient){}
+  ngOnInit(): void {
+  }
+  submitClaim = (form: NgForm) => {
+    if (form.valid){
+      const token: string | null = localStorage.getItem('jwt');
+      if(token){
+        const decodedToken: any= jwt_decode(token);
+        const userId = decodedToken['userId'];
+        this.NewClaim.ClientId = userId;
+        const damagerInfo = document.getElementById("DamagerInfo")?.innerText;
+        if (damagerInfo){
+          this.getDamageId(damagerInfo).then((value: number) => {
+            this.NewClaim.DamagerInfo = value;
+            return;
+          })
+          this.http.post<AuthenticatedResponse>("http://localhost:5025/TicketForm/SubmitClaim", this.NewClaim, {
+            headers: new HttpHeaders({ "Content-Type": "application/json"})
+        })
+        .subscribe({
+          next: (response: AuthenticatedResponse) => {
+            console.log("This is working so far");
+            this.router.navigate(["/afterLogin"]);
+          },
+          error: (err: HttpErrorResponse) => console.log(err)
+        })
 
+        }
+
+      }
+    }
+  }
+  async getDamageId(damagerName: string): Promise<number> {
+    const hash = CryptoJS.MD5("16aed8bb2db92dc0d6f5e6ca7059b194ff52b92228ecae25f58b2e8b15e9eaded61953912").toString();
+    const response = await fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=1&name=${damagerName}&apikey=8ecae25f58b2e8b15e9eaded61953912&hash=${hash}`);
+    const data = await response.json();
+    try {
+        return data.data.results[0].id;
+    } catch (err) {
+        window.alert("Not a valid character. Please try again");
+        throw err;
+    }
+}
+
+
+  async retrieveDamagers(): Promise<void> {
+  let relevantHeroes: string[] = [];
+  const damageInfo = document.getElementById('Damager') as HTMLInputElement;
+  const hash = CryptoJS.MD5('16aed8bb2db92dc0d6f5e6ca7059b194ff52b92228ecae25f58b2e8b15e9eaded61953912').toString();
+  const res = await fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=1&nameStartsWith=${damageInfo.value}&apikey=8ecae25f58b2e8b15e9eaded61953912&hash=${hash}`);
+  const data = await res.json();
+  console.log(data);
+  for (let i = 0; i < 5; i++) {
+    if (data.data.results[i] !== null) {
+      console.log(data.data.results[i].name);
+      const hero = data.data.results[i].name;
+      const heroList = document.getElementById('possibleheroes') as HTMLSelectElement;
+      const opt = document.createElement('option');
+      opt.value = hero;
+      opt.innerHTML = hero;
+      heroList.appendChild(opt);
+    } else {
+      break;
+    }
+  }
+}
 }
