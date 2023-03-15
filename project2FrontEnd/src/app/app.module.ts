@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { TicketFormComponent } from './ticket-form/ticket-form.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -24,7 +25,8 @@ export function tokenGetter() {
     HomePageComponent,
     PostLoginComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    TicketFormComponent
   ],
   imports: [
     BrowserModule,
