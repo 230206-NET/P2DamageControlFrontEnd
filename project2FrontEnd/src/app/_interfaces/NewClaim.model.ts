@@ -1,8 +1,8 @@
 export interface NewTicketModel {
     ClientId: number;
     Amount: number;
-    Date: string;
-    DamagerInfo: number;
+    DamageDate: string;
+    DamagerId: number;
     Description: string;
 
   }
