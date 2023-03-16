@@ -1,1 +1,24 @@
-<p>ticket-form works!</p>
+<main class="container">
+    <article class="grid">
+        <div>
+
+            <h1 style="margin: 0;">Claim Submission</h1>
+
+
+            <form #fileClaimForm="ngForm" (ngSubmit)="submitClaim(fileClaimForm)" style="margin-top: 0;" autocomplete="on">
+                <input id="Amount" type="text" [(ngModel)]="NewClaim.Amount" name="Amount" placeholder="Damage Amount" aria-label="Damage Amount"
+                    required>
+                <datalist id="possibleheroes"></datalist>
+                <input (keyup)="retrieveDamagers()" [(ngModel)]="DamagerName" id="Damager" type="text" name="Damager Name" autocomplete="on"
+                    placeholder="Damager Name" aria-label="Damager Name" list="possibleheroes" required />
+                <input type="date" [(ngModel)]="NewClaim.DamageDate" name="Date of Damage" aria-label="Date of Damage" required>
+                <input type="text" id="Description" [(ngModel)]="NewClaim.Description" name="Description" aria-label="Description" required>
+                <fieldset>
+
+                </fieldset>
+                    <button type="submit" class="contrast" id="submitclaim" [disabled] = "!fileClaimForm.valid">Submit
+                    Claim</button>
+            </form>
+        </div>
+    </article>
+</main>

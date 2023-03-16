@@ -13,6 +13,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TicketFormComponent } from './ticket-form/ticket-form.component';
+import { ViewAllTicketsComponent } from './view-all-tickets/view-all-tickets.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -26,7 +27,8 @@ export function tokenGetter() {
     PostLoginComponent,
     LoginComponent,
     RegisterComponent,
-    TicketFormComponent
+    TicketFormComponent,
+    ViewAllTicketsComponent
   ],
   imports: [
     BrowserModule,
