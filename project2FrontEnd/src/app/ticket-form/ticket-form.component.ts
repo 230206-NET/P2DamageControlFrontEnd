@@ -14,7 +14,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
   styleUrls: ['./ticket-form.component.scss']
 })
 export class TicketFormComponent implements OnInit{
-  
+  key : string = "16aed8bb2db92dc0d6f5e6ca7059b194ff52b92228ecae25f58b2e8b15e9eaded61953912";
   NewClaim: NewTicketModel = {
     ClientId: 0,
     Amount: 0,
@@ -59,7 +59,7 @@ export class TicketFormComponent implements OnInit{
     }
   }
   async getDamageId(damagerName: string): Promise<number> {
-    const hash = CryptoJS.MD5("16aed8bb2db92dc0d6f5e6ca7059b194ff52b92228ecae25f58b2e8b15e9eaded61953912").toString();
+    const hash = CryptoJS.MD5(this.key).toString();
     const response = await fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=1&name=${damagerName}&apikey=8ecae25f58b2e8b15e9eaded61953912&hash=${hash}`);
     const data = await response.json();
     try {
@@ -74,7 +74,7 @@ export class TicketFormComponent implements OnInit{
   async retrieveDamagers(): Promise<void> {
   let relevantHeroes: string[] = [];
   const damageInfo = this.DamagerName;
-  const hash = CryptoJS.MD5('16aed8bb2db92dc0d6f5e6ca7059b194ff52b92228ecae25f58b2e8b15e9eaded61953912').toString();
+  const hash = CryptoJS.MD5(this.key).toString();
   const res = await fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=1&nameStartsWith=${damageInfo}&apikey=8ecae25f58b2e8b15e9eaded61953912&hash=${hash}`);
   const data = await res.json();
   console.log(data);
