@@ -29,7 +29,7 @@
                     </tr>
             </table>-->
             <details *ngFor="let Ticket of FoundTickets">
-                <summary>{{Ticket.id}}</summary>
+                <summary>Ticket Number #{{Ticket.id}}</summary>
                 <p>Client Id: #{{Ticket.clientId}}</p>
                 <p>Amount: ${{Ticket.amount}}</p>
                 <p>Submission Date: {{Ticket.submissionDate | date:'fullDate'}}</p>
@@ -41,6 +41,8 @@
                     <p>Employee Id: {{Ticket.employeeId}}</p>
                 </div>
                 <p *ngIf="Ticket.ticketStatus == 0">Ticket Ruling: {{StatusValues[Ticket.ticketStatus]}}</p>
+                <button role="button" style="background-color: green; width:40%; margin-left: 5%;" (click)="approveTicket(Ticket.id, 1)">Approve</button>
+                <button role="button" style="background-color: red; width:40%; margin-left: 10%; margin-right: 5%;">Deny</button>
             </details>
       </section>
     </div>

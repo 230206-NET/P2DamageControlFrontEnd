@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'afterLogin', component: PostLoginComponent, canActivate: [AuthGuard]},
   {path: 'Register', component: RegisterComponent},
   {path: 'FileClaim', component: TicketFormComponent, canActivate: [AuthGuard]},
-  {path: 'ViewClaims', component: ViewAllTicketsComponent}
+  {path: 'ViewClaims', component: ViewAllTicketsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
