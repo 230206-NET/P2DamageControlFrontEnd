@@ -24,7 +24,7 @@ export class ViewAllTicketsComponent implements OnInit {
     
   }
   getPendingTickets() : Observable<Array<Tickets>>{
-    return this.http.get("http://localhost:5025/ViewAllTickets/GetAllClaims") as Observable<Array<Tickets>>;
+    return this.http.get("http://localhost:5025/EmployeeViewTickets/GetPendingClaims") as Observable<Array<Tickets>>;
     }
     
     translatePendingTickets() : void{
