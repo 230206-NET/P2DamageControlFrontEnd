@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TicketFormComponent } from './ticket-form/ticket-form.component';
 import { ViewAllTicketsComponent } from './view-all-tickets/view-all-tickets.component';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -28,7 +29,8 @@ export function tokenGetter() {
     LoginComponent,
     RegisterComponent,
     TicketFormComponent,
-    ViewAllTicketsComponent
+    ViewAllTicketsComponent,
+    NotAuthorizedComponent
   ],
   imports: [
     BrowserModule,
