@@ -9,6 +9,8 @@ import { PostLoginComponent } from './post-login/post-login.component';
 import { RegisterComponent } from './register/register.component';
 import { TicketFormComponent } from './ticket-form/ticket-form.component';
 import { ViewAllTicketsComponent } from './view-all-tickets/view-all-tickets.component';
+import { ViewProfileInfoComponent } from './view-profile-info/view-profile-info.component';
+import { ViewOwnTicketsComponent } from './view-own-tickets/view-own-tickets.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path: 'Register', component: RegisterComponent},
   {path: 'FileClaim', component: TicketFormComponent, canActivate: [AuthGuard]},
   {path: 'ViewClaims', component: ViewAllTicketsComponent, canActivate: [AuthGuard, EmployeeGuard]},
-  {path: 'notAuthorized', component: NotAuthorizedComponent}
+  {path: 'notAuthorized', component: NotAuthorizedComponent},
+  {path: 'ViewProfile', component: ViewProfileInfoComponent},
+  {path: 'ViewTickets', component: ViewOwnTicketsComponent}
 ];
 
 @NgModule({

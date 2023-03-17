@@ -1,0 +1,21 @@
+<main class="container">
+    <div class="grid">
+    
+      <section>
+            
+            <details *ngFor="let Ticket of FoundTickets">
+                <summary>Ticket Number #{{Ticket.id}}</summary>
+                <p>Client Id: #{{Ticket.clientId}}</p>
+                <p>Amount: ${{Ticket.amount}}</p>
+                <p>Submission Date: {{Ticket.submissionDate | date:'fullDate'}}</p>
+                <p>Date of Damage: {{Ticket.damageDate | date:'fullDate'}}</p>
+                <p>Damager Id: #{{Ticket.damagerId}}</p>
+                <div *ngIf="Ticket.ticketStatus > 0">
+                    <p>Ticket Ruling: {{StatusValues[Ticket.ticketStatus]}}</p>
+                    <p>Ruling Justification: {{Ticket.justification}}</p>
+                    <p>Employee Id: {{Ticket.employeeId}}</p>
+                </div>
+                <p *ngIf="Ticket.ticketStatus == 0">Ticket Ruling: {{StatusValues[Ticket.ticketStatus]}}</p>
+            </details>
+      </section>
+    </div>

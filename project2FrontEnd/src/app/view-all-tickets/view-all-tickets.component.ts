@@ -4,10 +4,14 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticatedResponse } from '../_interfaces/AuthenticatedResponse';
 import { Tickets } from '../_interfaces/Tickets.model';
+import jwt_decode from 'jwt-decode';
+
 
 type TicketDecision = {
-  ruling: number;
-  ticketNumber: number;
+  justification: string;
+  userId: number;
+  status: number;
+  ticketId: number;
 }
 @Component({
   selector: 'app-view-all-tickets',
@@ -17,8 +21,16 @@ type TicketDecision = {
 export class ViewAllTicketsComponent implements OnInit {
   constructor(private http : HttpClient, private router: Router) {}
   FoundTickets : Array<Tickets> = []
+  info: number = 0
   StatusValues : Array<string> = ["Pending", "Approved", "Denied"]
   ngOnInit(): void {
+    const token: string | null = localStorage.getItem('jwt');
+    if(token){
+      const decodedToken: any= jwt_decode(token);
+      console.log(decodedToken);
+      const Id = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/serialnumber'];
+      this.info = Id;
+    }      
     this.translatePendingTickets()
     
     
@@ -35,11 +47,13 @@ export class ViewAllTicketsComponent implements OnInit {
   }
   approveTicket(ticketId :number, decision: number) : void{
     let finalDecision : TicketDecision = {
-      ruling : decision,
-      ticketNumber : ticketId
+      userId: this.info,
+      status : decision,
+      ticketId : ticketId,
+      justification: "Filler Value"
     }
     console.log(finalDecision);
-    this.http.post<AuthenticatedResponse>("http://localhost:5025/!!!!!!!!!!!!!!", finalDecision, {
+    this.http.put<AuthenticatedResponse>("http://localhost:5025/EmployeeViewTickets/UpdateTicketStatus", finalDecision, {
       headers: new HttpHeaders({"Content-Type":"application/json"})
     }).subscribe({
       next: (response: AuthenticatedResponse) => {
