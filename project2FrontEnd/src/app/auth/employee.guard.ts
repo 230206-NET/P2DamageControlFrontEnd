@@ -22,7 +22,7 @@ export class EmployeeGuard implements CanActivate {
         if (Id > 0){
           return true;
         } else{
-          this.router.navigate(['/notAuthorized'])
+          this.router.navigate(['/ViewTickets'])
           return false
         }
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtDecodingService } from '../services/jwt-decoding.service';
 
 @Component({
   selector: 'app-home-page',
