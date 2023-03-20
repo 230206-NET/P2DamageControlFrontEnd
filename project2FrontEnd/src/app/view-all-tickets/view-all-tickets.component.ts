@@ -5,11 +5,13 @@ import { Observable } from 'rxjs';
 import { AuthenticatedResponse } from '../_interfaces/AuthenticatedResponse';
 import { Tickets } from '../_interfaces/Tickets.model';
 import jwt_decode from 'jwt-decode';
+import { JwtDecodingService } from '../services/jwt-decoding.service';
 
 
 type TicketDecision = {
   justification: string;
   userId: number;
+  AccessLevel: number;
   status: number;
   ticketId: number;
 }
@@ -19,7 +21,7 @@ type TicketDecision = {
   styleUrls: ['./view-all-tickets.component.scss']
 })
 export class ViewAllTicketsComponent implements OnInit {
-  constructor(private http : HttpClient, private router: Router) {}
+  constructor(private http : HttpClient, private router: Router, private jwtDecoder: JwtDecodingService) {}
   FoundTickets : Array<Tickets> = []
   info: number = 0
   StatusValues : Array<string> = ["Pending", "Approved", "Denied"]
