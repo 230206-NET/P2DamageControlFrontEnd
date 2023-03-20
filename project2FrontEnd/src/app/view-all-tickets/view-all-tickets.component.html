@@ -42,7 +42,7 @@
                 </div>
                 <p *ngIf="Ticket.ticketStatus == 0">Ticket Ruling: {{StatusValues[Ticket.ticketStatus]}}</p>
                 <button role="button" style="background-color: green; width:40%; margin-left: 5%;" (click)="approveTicket(Ticket.id, 1)">Approve</button>
-                <button role="button" style="background-color: red; width:40%; margin-left: 10%; margin-right: 5%;">Deny</button>
+                <button role="button" style="background-color: red; width:40%; margin-left: 10%; margin-right: 5%;" (click)="approveTicket(Ticket.id, 2)">Deny</button>
             </details>
       </section>
     </div>

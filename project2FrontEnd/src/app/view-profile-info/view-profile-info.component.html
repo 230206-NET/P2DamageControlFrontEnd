@@ -1,0 +1,24 @@
+<main class="container">
+    <article class="grid">
+        <div>
+
+            <h1 style="margin: 0;">Edit Profile</h1>
+            <!-- <h2>A minimalist layout for Login pages</h2>-->
+
+            <form style="margin-top: 0;" #profileForm="ngForm" (ngSubmit)="profile(profileForm)">
+                <input type="text" name="username" [(ngModel)]="userInfo.username"  aria-label="Username"
+                    autocomplete="nickname" required>
+                <input type="password" name="password" [(ngModel)]="userInfo.password" placeholder="Password" aria-label="Password"
+                    autocomplete="current-password">
+                <input type="text" name="Full Name" [(ngModel)]="userInfo.fullName"  required>
+                <input type="text" name="Email" [(ngModel)]="userInfo.email"  aria-label="Email" autocomplete="nickname"
+                    required>
+                <fieldset>
+
+                </fieldset>
+                <button type="submit" class="contrast" [disabled] = "!profileForm.valid">Update Info</button>
+            </form>
+        </div>
+        <div style="margin-top: 15%;"><img src="../../assets/DamageControlLogo.png" /></div>
+    </article>
+</main>
