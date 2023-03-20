@@ -5,8 +5,8 @@
           <h1>Damage Control</h1>
           <h2>Because the heroes need someone to clean up after them</h2>
       </hgroup>
-      <p><a routerLink="/FileClaim" *ngIf="AccessLevel === 0" role="button">Submit Claim</a></p>
-      <p><a routerLink="/ViewTickets" *ngIf="AccessLevel === 0" role="button">View Your Claims</a></p>
+      <p><a routerLink="/FileClaim" *ngIf="AccessLevel == 0" role="button">Submit Claim</a></p>
+      <p><a routerLink="/ViewTickets" *ngIf="AccessLevel == 0" role="button">View Your Claims</a></p>
       <p><a routerLink="/ViewClaims" *ngIf="AccessLevel > 0" role="button">View Submitted Claims</a></p>
       <p><a routerLink="/ViewProfile" role="button">Check/Edit Personal Information</a></p>
       
