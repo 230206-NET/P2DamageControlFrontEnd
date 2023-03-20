@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'notAuthorized', component: NotAuthorizedComponent},
   {path: 'ViewProfile', component: ViewProfileInfoComponent},
   {path: 'ViewTickets', component: ViewOwnTicketsComponent},
-  {path: '/AdminScreen', component: EmployeeAdminComponent, canActivate: [AdminGuard]}
+  {path: 'AdminScreen', component: EmployeeAdminComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({

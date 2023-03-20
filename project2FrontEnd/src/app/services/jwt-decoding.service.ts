@@ -8,6 +8,7 @@ import jwt_decode from 'jwt-decode';
 export class JwtDecodingService {
 
   constructor() { }
+  //Gets Id number from the JWT Token
   getId() : number{
     const token: string | null = localStorage.getItem('jwt');
     if(token){
@@ -20,6 +21,7 @@ export class JwtDecodingService {
       return 0;
     }
   }
+    //Gets Username from the JWT Token
     getUsername() : string{
       const token: string | null = localStorage.getItem('jwt');
       if(token){
@@ -32,6 +34,7 @@ export class JwtDecodingService {
         return " ";
       }
     }
+      //Gets Access Level from the JWT Token
     getAccessLevel() : number{
       const token: string | null = localStorage.getItem('jwt');
       if(token){

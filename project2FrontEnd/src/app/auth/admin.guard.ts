@@ -16,7 +16,7 @@ export class AdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const token: string | null = localStorage.getItem('jwt');
       if (token){
-        let AccessLevel : number = this.jwtDecoder.getId()
+        let AccessLevel : number = this.jwtDecoder.getAccessLevel()
         if (AccessLevel > 2){
           return true;
         } else{

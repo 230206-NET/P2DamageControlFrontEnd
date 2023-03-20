@@ -6,12 +6,12 @@
                 <summary>Employee Number #{{User.id}}</summary>
                 <p>Username: ${{User.username}}</p>
                 <p>Full Name: #{{User.fullName}}</p>
-                <p>Email: {{Users.email}}</p>
-                <p>Access Level: {{Levels[Users.accessLevel]}}</p>
+                <p>Email: {{User.email}}</p>
+                <p>Access Level: {{Levels[User.accessLevel]}}</p>
                 <button role="button" style="background-color: yellow;" (click)="changeAccessLevel(User.id, 0)">Make Client</button>
-                <button role="button" style="background-color: yellow;" (click)="approveTicket(User.id, 1)">Make Employee</button>
-                <button role="button" style="background-color: yellow;" (click)="approveTicket(User.id, 2)">Make Manager</button>
-                <button role="button" style="background-color: yellow;" (click)="approveTicket(User.id, 3)">Make Admin</button>                
+                <button role="button" style="background-color: yellow;" (click)="changeAccessLevel(User.id, 1)">Make Employee</button>
+                <button role="button" style="background-color: yellow;" (click)="changeAccessLevel(User.id, 2)">Make Manager</button>
+                <button role="button" style="background-color: yellow;" (click)="changeAccessLevel(User.id, 3)">Make Admin</button>                
             </details>
         </section>
     </div>

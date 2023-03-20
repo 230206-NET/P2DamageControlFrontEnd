@@ -13,9 +13,9 @@ type Employees = {
   accessLevel: number;
 }
 type UserAccessLevelChange = {
-  id: number;
+  userId: number;
   accessLevel: number;
-  currentId: number;
+  adminId: number;
 
 }
 @Component({
@@ -28,7 +28,7 @@ export class EmployeeAdminComponent implements OnInit {
   Levels : Array<string> = ['Client', 'Employee', 'Manager', 'Admin'];
   Users : Array<Employees> = []
   ngOnInit(): void {
-    this.retrieveEmployees();
+    this.translateEmployees();
   }
   retrieveEmployees() : Observable<Array<Employees>>{
     return this.http.get("http://localhost:5025/EmployeeAdmin/GetAllUsers") as Observable<Array<Employees>>
@@ -40,11 +40,11 @@ export class EmployeeAdminComponent implements OnInit {
   }
   changeAccessLevel(Id: number, newLevel: number) : void{
     let updatedEmployee : UserAccessLevelChange = {
-      id: Id,
+      userId: Id,
       accessLevel: newLevel,
-      currentId: this.jwtDecoder.getId()
+      adminId: this.jwtDecoder.getId()
     }
-    this.http.put<AuthenticatedResponse>("http://localhost:5025/EmployeeAdmin/changeAccessLevel", updatedEmployee, {
+    this.http.put<AuthenticatedResponse>("http://localhost:5025/EmployeeAdmin/UpdateUserAccessLevel", updatedEmployee, {
       headers: new HttpHeaders({"Content-Type":"application/json"})
     }).subscribe({
       next: (response: AuthenticatedResponse) => {
