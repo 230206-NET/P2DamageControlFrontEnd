@@ -17,6 +17,7 @@ import { ViewAllTicketsComponent } from './view-all-tickets/view-all-tickets.com
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 import { ViewOwnTicketsComponent } from './view-own-tickets/view-own-tickets.component';
 import { ViewProfileInfoComponent } from './view-profile-info/view-profile-info.component';
+import { EmployeeAdminComponent } from './employee-admin/employee-admin.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -34,7 +35,8 @@ export function tokenGetter() {
     ViewAllTicketsComponent,
     NotAuthorizedComponent,
     ViewOwnTicketsComponent,
-    ViewProfileInfoComponent
+    ViewProfileInfoComponent,
+    EmployeeAdminComponent
   ],
   imports: [
     BrowserModule,

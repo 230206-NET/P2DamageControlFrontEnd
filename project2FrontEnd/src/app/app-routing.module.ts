@@ -11,6 +11,8 @@ import { TicketFormComponent } from './ticket-form/ticket-form.component';
 import { ViewAllTicketsComponent } from './view-all-tickets/view-all-tickets.component';
 import { ViewProfileInfoComponent } from './view-profile-info/view-profile-info.component';
 import { ViewOwnTicketsComponent } from './view-own-tickets/view-own-tickets.component';
+import { EmployeeAdminComponent } from './employee-admin/employee-admin.component';
+import { AdminGuard } from './auth/admin.guard';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -21,7 +23,8 @@ const routes: Routes = [
   {path: 'ViewClaims', component: ViewAllTicketsComponent, canActivate: [AuthGuard, EmployeeGuard]},
   {path: 'notAuthorized', component: NotAuthorizedComponent},
   {path: 'ViewProfile', component: ViewProfileInfoComponent},
-  {path: 'ViewTickets', component: ViewOwnTicketsComponent}
+  {path: 'ViewTickets', component: ViewOwnTicketsComponent},
+  {path: '/AdminScreen', component: EmployeeAdminComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({

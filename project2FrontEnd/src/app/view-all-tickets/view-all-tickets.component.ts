@@ -52,6 +52,7 @@ export class ViewAllTicketsComponent implements OnInit {
       userId: this.info,
       status : decision,
       ticketId : ticketId,
+      AccessLevel : this.jwtDecoder.getAccessLevel(),
       justification: "Filler Value"
     }
     console.log(finalDecision);
