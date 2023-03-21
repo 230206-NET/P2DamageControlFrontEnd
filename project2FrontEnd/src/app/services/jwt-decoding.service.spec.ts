@@ -13,4 +13,7 @@ describe('JwtDecodingService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+  it('should decode jwt token', () => {
+    
+  })
 });

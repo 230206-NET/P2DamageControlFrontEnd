@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ViewOwnTicketsComponent } from './view-own-tickets.component';
 
 describe('ViewOwnTicketsComponent', () => {
@@ -8,7 +8,8 @@ describe('ViewOwnTicketsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewOwnTicketsComponent ]
+      declarations: [ ViewOwnTicketsComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
 

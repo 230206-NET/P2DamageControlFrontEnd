@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { TicketFormComponent } from './ticket-form.component';
 
@@ -8,7 +11,8 @@ describe('TicketFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TicketFormComponent ]
+      declarations: [ TicketFormComponent ],
+      imports: [HttpClientTestingModule, FormsModule, BrowserModule]
     })
     .compileComponents();
 

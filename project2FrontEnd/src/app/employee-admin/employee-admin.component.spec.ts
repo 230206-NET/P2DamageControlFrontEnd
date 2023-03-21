@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { JwtDecodingService } from '../services/jwt-decoding.service';
 import { EmployeeAdminComponent } from './employee-admin.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EmployeeAdminComponent', () => {
   let component: EmployeeAdminComponent;
@@ -8,7 +10,8 @@ describe('EmployeeAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmployeeAdminComponent ]
+      declarations: [ EmployeeAdminComponent ],
+      imports: [ HttpClientTestingModule, RouterTestingModule ]
     })
     .compileComponents();
 

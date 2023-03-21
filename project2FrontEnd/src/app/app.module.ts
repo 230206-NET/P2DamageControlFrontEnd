@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, NgForm } from '@angular/forms';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PostLoginComponent } from './post-login/post-login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -18,6 +19,7 @@ import { NotAuthorizedComponent } from './not-authorized/not-authorized.componen
 import { ViewOwnTicketsComponent } from './view-own-tickets/view-own-tickets.component';
 import { ViewProfileInfoComponent } from './view-profile-info/view-profile-info.component';
 import { EmployeeAdminComponent } from './employee-admin/employee-admin.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -43,6 +45,9 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    HttpClient,
+    JwtHelperService,
+    HttpClientTestingModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PostLoginComponent } from './post-login.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 describe('PostLoginComponent', () => {
   let component: PostLoginComponent;

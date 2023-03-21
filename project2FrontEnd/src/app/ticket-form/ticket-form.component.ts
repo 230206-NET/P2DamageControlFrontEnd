@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import jwt_decode from 'jwt-decode';
 
@@ -8,11 +8,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { NewTicketModel } from '../_interfaces/NewClaim.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
-@Component({
+ @Component({
   selector: 'app-ticket-form',
   templateUrl: './ticket-form.component.html',
   styleUrls: ['./ticket-form.component.scss']
 })
+
 export class TicketFormComponent implements OnInit{
   key : string = "16aed8bb2db92dc0d6f5e6ca7059b194ff52b92228ecae25f58b2e8b15e9eaded61953912";
   NewClaim: NewTicketModel = {
