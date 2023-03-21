@@ -22,8 +22,8 @@ const routes: Routes = [
   {path: 'FileClaim', component: TicketFormComponent, canActivate: [AuthGuard]},
   {path: 'ViewClaims', component: ViewAllTicketsComponent, canActivate: [AuthGuard, EmployeeGuard]},
   {path: 'notAuthorized', component: NotAuthorizedComponent},
-  {path: 'ViewProfile', component: ViewProfileInfoComponent},
-  {path: 'ViewTickets', component: ViewOwnTicketsComponent},
+  {path: 'ViewProfile', component: ViewProfileInfoComponent, canActivate: [AuthGuard]},
+  {path: 'ViewTickets', component: ViewOwnTicketsComponent, canActivate: [AuthGuard]},
   {path: 'AdminScreen', component: EmployeeAdminComponent, canActivate: [AdminGuard]}
 ];
 

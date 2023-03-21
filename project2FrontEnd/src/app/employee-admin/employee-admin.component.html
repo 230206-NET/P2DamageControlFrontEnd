@@ -4,14 +4,14 @@
       <section>
             <details *ngFor="let User of Users">
                 <summary>Employee Number #{{User.id}}</summary>
-                <p>Username: ${{User.username}}</p>
-                <p>Full Name: #{{User.fullName}}</p>
+                <p>Username: {{User.username}}</p>
+                <p>Full Name: {{User.fullName}}</p>
                 <p>Email: {{User.email}}</p>
                 <p>Access Level: {{Levels[User.accessLevel]}}</p>
-                <button role="button" style="background-color: yellow;" (click)="changeAccessLevel(User.id, 0)">Make Client</button>
-                <button role="button" style="background-color: yellow;" (click)="changeAccessLevel(User.id, 1)">Make Employee</button>
-                <button role="button" style="background-color: yellow;" (click)="changeAccessLevel(User.id, 2)">Make Manager</button>
-                <button role="button" style="background-color: yellow;" (click)="changeAccessLevel(User.id, 3)">Make Admin</button>                
+                <button role="button" style="background-color: orangered;" (click)="changeAccessLevel(User.id, 0)">Make Client</button>
+                <button role="button" style="background-color: orangered;" (click)="changeAccessLevel(User.id, 1)">Make Employee</button>
+                <button role="button" style="background-color: orangered;" (click)="changeAccessLevel(User.id, 2)">Make Manager</button>
+                <button role="button" style="background-color: orangered;" (click)="changeAccessLevel(User.id, 3)">Make Admin</button>                
             </details>
         </section>
     </div>

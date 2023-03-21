@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {  LoginModel } from '../_interfaces/login.model';
 import { AuthenticatedResponse } from '../_interfaces/AuthenticatedResponse';
-import { FormsModule, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   invalidLogin: boolean | undefined;
-  credentials: LoginModel = {Username:'', Password:''};
+  credentials: LoginModel = {username:'', password:''};
   constructor(private router: Router, private http: HttpClient) { }
   ngOnInit(): void {
     
@@ -20,13 +20,12 @@ export class LoginComponent implements OnInit {
   //Sets up form for login, and transmits the info to the back-end to compare info to DB
   login = ( form: NgForm) => {
     if (form.valid) {
-      console.log(this.credentials)
       this.http.post<AuthenticatedResponse>("http://localhost:5025/NewLogIn/LogIn", this.credentials, {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({
+        
         next: (response: AuthenticatedResponse) => {
-          console.log("This is working");
           const token = response.token;
           localStorage.setItem("jwt", token); 
           this.invalidLogin = false; 
