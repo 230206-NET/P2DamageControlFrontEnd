@@ -1,3 +1,4 @@
+//The interface allowing for retrieval of tickets
 export interface Tickets{
     id: number;
     clientId: number;

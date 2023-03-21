@@ -10,7 +10,7 @@ import jwt_decode from 'jwt-decode';
 })
 export class EmployeeGuard implements CanActivate {
   constructor(private router:Router, private jwtHelper: JwtHelperService){}
-
+  //Determines if the employee is above access level 0, and navigates them to the page associated with their access levels
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

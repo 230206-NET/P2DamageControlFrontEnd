@@ -12,6 +12,7 @@ export class HomePageComponent {
   ngOnInit(): void {
     
   }
+  //Checks if the user is currently authenticated
   isUserAuthenticated = (): boolean => {
     const token = localStorage.getItem("jwt");
     if (token && !this.jwtHelper.isTokenExpired(token)){
@@ -19,6 +20,7 @@ export class HomePageComponent {
     }
     return false;
   }
+  //Allows the user to log out
   logOut = () => {
     localStorage.removeItem("jwt");
   }

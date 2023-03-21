@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthenticatedResponse } from '../_interfaces/AuthenticatedResponse';
 import { FormsModule, NgForm } from '@angular/forms';
 import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
+import { JwtDecodingService } from '../services/jwt-decoding.service';
 
 type UserId = {
   Id: number;
@@ -35,21 +37,18 @@ export class ViewProfileInfoComponent implements OnInit {
     id: 0
   }
   
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private jwtDecoder: JwtDecodingService) { }
+  //Retrieves the Id from the jwt token and then calls the method to add the info to the inputs
   async ngOnInit(): Promise<void> {
     const token: string | null = localStorage.getItem('jwt');
       if(token){
-        const decodedToken: any= jwt_decode(token);
-        console.log(decodedToken);
-        const Id = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/serialnumber'];
-        this.info.Id = Id;
-        console.log(this.info.Id);
-       
+        this.info.Id = this.jwtDecoder.getId();     
       }
       await this.getProfileInfo();
       
 
     }
+    //Retrieves the info from the user's profile. Password will not be included
   async getProfileInfo() : Promise<void>{
     this.http.post<AuthenticatedResponse>("http://localhost:5025/Information/Info", this.info, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })      
@@ -59,7 +58,7 @@ export class ViewProfileInfoComponent implements OnInit {
       console.log(data);
       console.log("Nothing appears here")
       })};
-  
+  //Changes the current user's info to match what was entered into the relevant fields
   profile = (form: NgForm) => {
     if (form.valid) {
       this.http.put<AuthenticatedResponse>("http://localhost:5025/Information/ChangeInfo", this.userInfo, {

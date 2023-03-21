@@ -27,17 +27,21 @@ export class EmployeeAdminComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private jwtDecoder: JwtDecodingService){}
   Levels : Array<string> = ['Client', 'Employee', 'Manager', 'Admin'];
   Users : Array<Employees> = []
+  //Calls the method that shows all users
   ngOnInit(): void {
     this.translateEmployees();
   }
+  //Returns an observable containing all users
   retrieveEmployees() : Observable<Array<Employees>>{
     return this.http.get("http://localhost:5025/EmployeeAdmin/GetAllUsers") as Observable<Array<Employees>>
   }
+  //Translates the observable containing all users to a format that can be displayed
   translateEmployees() : void{
     this.retrieveEmployees().subscribe((data: any) =>{
       this.Users = data;
     })
   }
+  //Changes the access level to the one specified by the admin
   changeAccessLevel(Id: number, newLevel: number) : void{
     let updatedEmployee : UserAccessLevelChange = {
       userId: Id,

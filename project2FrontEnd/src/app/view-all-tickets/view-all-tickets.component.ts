@@ -25,28 +25,28 @@ export class ViewAllTicketsComponent implements OnInit {
   FoundTickets : Array<Tickets> = []
   info: number = 0
   StatusValues : Array<string> = ["Pending", "Approved", "Denied"]
+  //Sets Id and retrieves tickets
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('jwt');
     if(token){
-      const decodedToken: any= jwt_decode(token);
-      console.log(decodedToken);
-      const Id = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/serialnumber'];
-      this.info = Id;
+      this.info = this.jwtDecoder.getId()
     }      
     this.translatePendingTickets()
     
     
   }
+  //Retrieves all tickets from Back-End
   getPendingTickets() : Observable<Array<Tickets>>{
     return this.http.get("http://localhost:5025/EmployeeViewTickets/GetPendingClaims") as Observable<Array<Tickets>>;
     }
-    
+    //Translates tickets to a form that the front-end can display
     translatePendingTickets() : void{
       this.getPendingTickets().subscribe((data: any) => {
         console.log(data);
         this.FoundTickets = data;
       });
   }
+  //Rules on tickets based on the decision passed in
   approveTicket(ticketId :number, decision: number) : void{
     let finalDecision : TicketDecision = {
       userId: this.info,

@@ -10,7 +10,7 @@ import { JwtDecodingService } from '../services/jwt-decoding.service';
 })
 export class AdminGuard implements CanActivate {
   constructor(private router:Router, private jwtHelper: JwtHelperService, private jwtDecoder: JwtDecodingService){}
-
+  //Ensures the user has an access level of at least 3, aand navigates them to the appropriate page
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  //Transmits info in the registration form to the back-end db to create a new user
   register = (form: NgForm) => {
     if (form.valid) {
       console.log(this.info);

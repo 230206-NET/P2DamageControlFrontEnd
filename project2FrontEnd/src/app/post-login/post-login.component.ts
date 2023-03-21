@@ -9,6 +9,7 @@ import { JwtDecodingService } from '../services/jwt-decoding.service';
 export class PostLoginComponent implements OnInit {
   constructor(private service: JwtDecodingService){}
   AccessLevel : number = 0;
+  //Gets access level of current user to customize their options
   async ngOnInit(): Promise<void> {
     this.AccessLevel = await this.service.getAccessLevel()
     

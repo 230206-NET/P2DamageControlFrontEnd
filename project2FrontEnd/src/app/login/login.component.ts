@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  //Sets up form for login, and transmits the info to the back-end to compare info to DB
   login = ( form: NgForm) => {
     if (form.valid) {
       console.log(this.credentials)
