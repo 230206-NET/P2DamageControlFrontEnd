@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 
           next: (response: AuthenticatedResponse) => {
             const token = response.token;
+            console.log(token)
             localStorage.setItem("jwt", token);
             this.invalidLogin = false;
             this.router.navigate(["/afterLogin"]);

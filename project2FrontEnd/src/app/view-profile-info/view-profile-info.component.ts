@@ -17,7 +17,7 @@ type UserInfo = {
   email: string;
   accessLevel: number;
   id: number;
-  
+
 }
 
 @Component({
@@ -27,7 +27,7 @@ type UserInfo = {
 })
 export class ViewProfileInfoComponent implements OnInit {
   invalidReg: boolean = false;
-  info: UserId = {Id: 0}
+  info: UserId = { Id: 0 }
   userInfo: UserInfo = {
     password: '',
     username: '',
@@ -36,43 +36,45 @@ export class ViewProfileInfoComponent implements OnInit {
     accessLevel: 0,
     id: 0
   }
-  
-  constructor(private router: Router, private http: HttpClient, private jwtDecoder: JwtDecodingService) { }
+
+  constructor(public router: Router, private http: HttpClient, private jwtDecoder: JwtDecodingService) { }
   //Retrieves the Id from the jwt token and then calls the method to add the info to the inputs
   async ngOnInit(): Promise<void> {
     const token: string | null = localStorage.getItem('jwt');
-      if(token){
-        this.info.Id = this.jwtDecoder.getId();     
-      }
-      await this.getProfileInfo();
-      
-
+    if (token) {
+      this.info.Id = this.jwtDecoder.getId();
     }
-    //Retrieves the info from the user's profile. Password will not be included
-  async getProfileInfo() : Promise<void>{
+    await this.getProfileInfo();
+
+
+  }
+  //Retrieves the info from the user's profile. Password will not be included
+  async getProfileInfo(): Promise<void> {
     this.http.post<AuthenticatedResponse>("http://localhost:5025/Information/Info", this.info, {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })      
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
     })
-    .subscribe((data: any) => {
-      this.userInfo = data as UserInfo;
-      console.log(data);
-      console.log("Nothing appears here")
-      })};
+      .subscribe((data: any) => {
+        this.userInfo = data as UserInfo;
+        console.log(data);
+        console.log("Nothing appears here")
+      })
+  };
   //Changes the current user's info to match what was entered into the relevant fields
   profile = (form: NgForm) => {
     if (form.valid) {
       this.http.put<AuthenticatedResponse>("http://localhost:5025/Information/ChangeInfo", this.userInfo, {
         headers: new HttpHeaders({ "Content-Type": "application/json" })
       })
-      .subscribe({
-        next: (response: AuthenticatedResponse) => {
-          console.log("The user has been successfully sent to the server");
-          this.invalidReg = false;
-          this.router.navigate(["/afterLogin"]);
-        },
-        error: (err: HttpErrorResponse) => this.invalidReg = true
-      })
+        .subscribe({
+          next: (response: AuthenticatedResponse) => {
+            console.log("The user has been successfully sent to the server");
+            this.invalidReg = false;
+            this.router.navigate(["/afterLogin"]);
+          },
+          error: (err: HttpErrorResponse) => this.invalidReg = true
+        })
     }
+    return;
   }
 
 }

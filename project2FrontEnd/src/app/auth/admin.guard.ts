@@ -9,26 +9,24 @@ import { JwtDecodingService } from '../services/jwt-decoding.service';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  
-  
-  constructor(private router:Router, private jwtHelper: JwtHelperService, private jwtDecoder: JwtDecodingService){}
+
+
+  constructor(public router: Router, private jwtHelper: JwtHelperService, private jwtDecoder: JwtDecodingService) { }
   //Ensures the user has an access level of at least 3, aand navigates them to the appropriate page
+  token: string | null = localStorage.getItem('jwt');
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const token: string | null = localStorage.getItem('jwt');
-      if (token){
-        let AccessLevel : number = this.jwtDecoder.getAccessLevel()
-        if (AccessLevel > 2){
-          return true;
-        } else{
-          this.router.navigate(['/notAuthorized'])
-          return false
-        }
-
+    if (this.token) {
+      let AccessLevel: number = this.jwtDecoder.getAccessLevel()
+      if (AccessLevel > 2) {
+        return true;
       }
+      this.router.navigate(['/notAuthorized'])
+      return false
+    } else {
       this.router.navigate(['/Login'])
-    return false;
+      return false;
+    }
   }
-  
 }
