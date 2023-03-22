@@ -4,12 +4,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate  {
-  constructor(private router:Router, private jwtHelper: JwtHelperService){}
+export class AuthGuard implements CanActivate {
+  constructor(private router: Router, private jwtHelper: JwtHelperService) { }
   //Determines if the user has a valid token, and if not, navigates them to the login screen
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const token = localStorage.getItem("jwt");
-    if (token && !this.jwtHelper.isTokenExpired(token)){
+  token = localStorage.getItem("jwt");
+  canActivate(route: ActivatedRouteSnapshot | null, state: RouterStateSnapshot | null) {
+    if (this.token && !this.jwtHelper.isTokenExpired(this.token)) {
       return true;
     }
     this.router.navigate(["/Login"]);
