@@ -38,8 +38,8 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     httpMock = TestBed.inject(HttpTestingController);
-
     fixture.detectChanges();
+    localStorage.clear();
   });
 
   afterEach(() => {

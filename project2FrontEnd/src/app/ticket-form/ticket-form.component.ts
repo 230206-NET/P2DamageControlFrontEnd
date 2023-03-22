@@ -32,28 +32,22 @@ export class TicketFormComponent implements OnInit {
     if (form.valid) {
       if (this.token) {
         const decodedToken: any = jwt_decode(this.token);
-        console.log(decodedToken);
         const Id = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/serialnumber'];
         this.NewClaim.ClientId = Id;
-        console.log(Id);
         if (this.DamagerName != null) {
-          console.log(this.DamagerName)
           const response = await this.getDamageId(this.DamagerName).then((value: number) => {
             this.NewClaim.DamagerId = value;
-            console.log(this.NewClaim.DamagerId);
-            console.log(this.NewClaim)
           })
           await this.http.post<AuthenticatedResponse>("http://localhost:5025/TicketForm/SubmitClaim", this.NewClaim, {
             headers: new HttpHeaders({ "Content-Type": "application/json" })
           })
             .subscribe({
               next: (response: AuthenticatedResponse) => {
-                console.log("This is working so far");
                 this.router.navigate(["/afterLogin"]);
               },
 
               error: (err: HttpErrorResponse) => {
-                console.log(err);
+
               }
             });
 
@@ -65,15 +59,12 @@ export class TicketFormComponent implements OnInit {
   }
   async getDamageId(damagerName: string): Promise<number> {
     const hash = CryptoJS.MD5(this.key).toString();
-    console.log(damagerName)
     const response = await fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=1&name=${damagerName}&apikey=8ecae25f58b2e8b15e9eaded61953912&hash=${hash}`);
     const data = await response.json();
-    console.log(data);
     try {
       return data.data.results[0].id;
     } catch (err) {
       window.alert("Not a valid character. Please try again");
-      console.log(err)
       return new Promise(function (resolve, reject) {
         resolve(0)
       });
@@ -87,7 +78,6 @@ export class TicketFormComponent implements OnInit {
     const hash = CryptoJS.MD5(this.key).toString();
     const res = await fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=1&nameStartsWith=${damageInfo}&apikey=8ecae25f58b2e8b15e9eaded61953912&hash=${hash}`);
     const data = await res.json();
-    console.log(data);
     for (let i = 0; i < 5; i++) {
       if (data.data.results[i] != null) {
         const hero = data.data.results[i].name;
