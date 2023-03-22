@@ -21,12 +21,12 @@ describe('EmployeeAdminComponent', () => {
       navigate: jasmine.createSpy('navigate')
     };
     await TestBed.configureTestingModule({
-      declarations: [ EmployeeAdminComponent ],
-      imports: [ HttpClientTestingModule, RouterTestingModule ],
-      providers: [ JwtDecodingService,
-        { provide: Router, useValue: mockRouter }, ]
+      declarations: [EmployeeAdminComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule],
+      providers: [JwtDecodingService,
+        { provide: Router, useValue: mockRouter },]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -52,7 +52,7 @@ describe('EmployeeAdminComponent', () => {
       { id: 2, username: 'user2', fullName: 'User Two', email: 'user2@test.com', accessLevel: 1 },
       { id: 3, username: 'user3', fullName: 'User Three', email: 'user3@test.com', accessLevel: 1 },
     ];
-    
+
     spyOn(component, 'retrieveEmployees').and.returnValue(of(mockEmployees));
     component.ngOnInit();
     const request = httpMock.expectOne('http://localhost:5025/EmployeeAdmin/GetAllUsers')
@@ -60,7 +60,7 @@ describe('EmployeeAdminComponent', () => {
 
   });
 
-  it('should change user access level', () => {
+  it('should change user access level', async () => {
     const mockUpdatedEmployee: UserAccessLevelChange = {
       userId: 1,
       accessLevel: 3,
@@ -71,13 +71,13 @@ describe('EmployeeAdminComponent', () => {
     };
     component.jwtDecoder = jasmine.createSpyObj('JwtDecodingService', ['getId']);
     (component.jwtDecoder as jasmine.SpyObj<JwtDecodingService>).getId.and.returnValue(2);
-    component.changeAccessLevel(1, 3);
+    await component.changeAccessLevel(1, 3);
     const request = httpMock.expectOne('http://localhost:5025/EmployeeAdmin/GetAllUsers')
 
     const req = httpMock.expectOne('http://localhost:5025/EmployeeAdmin/UpdateUserAccessLevel');
     expect(req.request.method).toBe('PUT');
     expect(req.request.body).toEqual(mockUpdatedEmployee);
     req.flush(mockResponse);
-    //expect(component.router.navigate).toHaveBeenCalledWith(['/AdminScreen']);
+    expect(component.router.navigate).toHaveBeenCalledWith(['/AdminScreen']);
   });
 });
