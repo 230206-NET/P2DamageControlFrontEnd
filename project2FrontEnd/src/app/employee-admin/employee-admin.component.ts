@@ -5,14 +5,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { JwtDecodingService } from '../services/jwt-decoding.service';
 import { AuthenticatedResponse } from '../_interfaces/AuthenticatedResponse';
 
-type Employees = {
+export type Employees = {
   id: number;
   username: string;
   fullName: string;
   email: string;
   accessLevel: number;
 }
-type UserAccessLevelChange = {
+export type UserAccessLevelChange = {
   userId: number;
   accessLevel: number;
   adminId: number;
@@ -24,7 +24,7 @@ type UserAccessLevelChange = {
   styleUrls: ['./employee-admin.component.scss']
 })
 export class EmployeeAdminComponent implements OnInit {
-  constructor(private http: HttpClient, private router: Router, private jwtDecoder: JwtDecodingService){}
+  constructor(private http: HttpClient, public router: Router, public jwtDecoder: JwtDecodingService){}
   Levels : Array<string> = ['Client', 'Employee', 'Manager', 'Admin'];
   Users : Array<Employees> = []
   //Calls the method that shows all users
