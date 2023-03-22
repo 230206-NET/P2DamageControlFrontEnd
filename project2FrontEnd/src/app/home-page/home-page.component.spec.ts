@@ -28,4 +28,8 @@ describe('HomePageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it("should logout", () => {
+    component.logOut()
+    expect(localStorage.getItem('jwt')).toBe(null)
+  })
 });
