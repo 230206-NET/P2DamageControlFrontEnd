@@ -53,7 +53,7 @@ export class EmployeeAdminComponent implements OnInit {
     }).subscribe({
       next: (response: AuthenticatedResponse) => {
         alert("Employee #" + Id + " has been made " + this.Levels[newLevel])
-        this.router.navigate(["/AdminScreen"])
+        location.reload()
       }, error: (err: HttpErrorResponse) => console.log(err)
     })
   }

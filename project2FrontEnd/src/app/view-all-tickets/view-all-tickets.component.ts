@@ -26,6 +26,7 @@ export class ViewAllTicketsComponent implements OnInit {
   info: number = 0
   StatusValues: Array<string> = ["Pending", "Approved", "Denied"]
   accessLevel: number = 0;
+  justification: string = "justification"
   //Sets Id and retrieves tickets
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('jwt');
@@ -54,15 +55,14 @@ export class ViewAllTicketsComponent implements OnInit {
       status: decision,
       ticketId: ticketId,
       AccessLevel: this.accessLevel,
-      justification: "Filler Value"
+      justification: this.justification
     }
     console.log(finalDecision);
     this.http.put<AuthenticatedResponse>("http://localhost:5025/EmployeeViewTickets/UpdateTicketStatus", finalDecision, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     }).subscribe({
       next: (response: AuthenticatedResponse) => {
-        this.router.navigate(["/ViewClaims"])
-
+        location.reload()
       }, error: (err: HttpErrorResponse) => console.log(err)
     })
   }

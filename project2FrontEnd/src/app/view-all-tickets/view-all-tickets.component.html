@@ -1,33 +1,7 @@
 <main class="container">
     <div class="grid">
-    
-      <section>
-            <!--<table>
-                <tr>
-                    <th>Ticket ID:</th>
-                    <th>Client ID:</th>
-                    <th>Cost:</th>
-                    <th>Employee ID:</th>
-                    <th>Submission Date:</th>
-                    <th>Date of Damage:</th>
-                    <th>Description:</th>
-                    <th>Damager:</th>
-                    <th>Justification:</th>
-                    <th>Status:</th>
-                </tr>
-                    <tr *ngFor="let Ticket of FoundTickets">
-                        <td>{{Ticket.id}}</td>
-                        <td>{{Ticket.clientId}}</td>
-                        <td>{{Ticket.amount}}</td>
-                        <td>{{Ticket.employeeId}}</td>
-                        <td>{{Ticket.submissionDate}}</td>
-                        <td>{{Ticket.damageDate}}</td>
-                        <td>{{Ticket.description}}</td>
-                        <td>{{Ticket.damagerId}}</td>
-                        <td>{{Ticket.justification}}</td>
-                        <td>{{StatusValues[Ticket.ticketStatus]}}</td>
-                    </tr>
-            </table>-->
+
+        <section>
             <details *ngFor="let Ticket of FoundTickets">
                 <summary>Ticket Number #{{Ticket.id}}</summary>
                 <p>Client Id: #{{Ticket.clientId}}</p>
@@ -41,9 +15,12 @@
                     <p>Employee Id: {{Ticket.employeeId}}</p>
                 </div>
                 <p *ngIf="Ticket.ticketStatus == 0">Ticket Ruling: {{StatusValues[Ticket.ticketStatus]}}</p>
-                <button role="button" style="background-color: green; width:40%; margin-left: 5%;" (click)="approveTicket(Ticket.id, 1)">Approve</button>
-                <button role="button" style="background-color: red; width:40%; margin-left: 10%; margin-right: 5%;" (click)="approveTicket(Ticket.id, 2)">Deny</button>
+                <input type="text" aria-label="Justification" required placeholder="Justification"
+                    [(ngModel)]="justification">
+                <button role="button" style="background-color: green; width:40%; margin-left: 5%;"
+                    (click)="approveTicket(Ticket.id, 1)">Approve</button>
+                <button role="button" style="background-color: red; width:40%; margin-left: 10%; margin-right: 5%;"
+                    (click)="approveTicket(Ticket.id, 2)">Deny</button>
             </details>
-      </section>
+        </section>
     </div>
-  
