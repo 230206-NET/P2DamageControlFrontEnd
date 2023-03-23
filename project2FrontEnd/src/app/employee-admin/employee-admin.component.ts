@@ -27,6 +27,7 @@ export class EmployeeAdminComponent implements OnInit {
   constructor(private http: HttpClient, public router: Router, public jwtDecoder: JwtDecodingService) { }
   Levels: Array<string> = ['Client', 'Employee', 'Manager', 'Admin'];
   Users: Array<Employees> = []
+  reload: boolean = true;
   //Calls the method that shows all users
   ngOnInit(): void {
     this.translateEmployees();
@@ -53,7 +54,10 @@ export class EmployeeAdminComponent implements OnInit {
     }).subscribe({
       next: (response: AuthenticatedResponse) => {
         alert("Employee #" + Id + " has been made " + this.Levels[newLevel])
-        location.reload()
+        if (this.reload) {
+          location.reload()
+
+        }
       }, error: (err: HttpErrorResponse) => console.log(err)
     })
   }

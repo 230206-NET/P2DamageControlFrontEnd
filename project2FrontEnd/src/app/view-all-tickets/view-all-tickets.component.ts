@@ -27,6 +27,7 @@ export class ViewAllTicketsComponent implements OnInit {
   StatusValues: Array<string> = ["Pending", "Approved", "Denied"]
   accessLevel: number = 0;
   justification: string = "justification"
+  reload: boolean = true
   //Sets Id and retrieves tickets
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('jwt');
@@ -62,7 +63,10 @@ export class ViewAllTicketsComponent implements OnInit {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     }).subscribe({
       next: (response: AuthenticatedResponse) => {
-        location.reload()
+        if (this.reload) {
+
+          location.reload()
+        }
       }, error: (err: HttpErrorResponse) => console.log(err)
     })
   }

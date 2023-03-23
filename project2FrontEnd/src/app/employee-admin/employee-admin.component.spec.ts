@@ -34,6 +34,7 @@ describe('EmployeeAdminComponent', () => {
     component = fixture.componentInstance;
     httpMock = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
+    component.reload = false
   });
 
   afterEach(() => {
@@ -78,6 +79,5 @@ describe('EmployeeAdminComponent', () => {
     expect(req.request.method).toBe('PUT');
     expect(req.request.body).toEqual(mockUpdatedEmployee);
     req.flush(mockResponse);
-    expect(component.router.navigate).toHaveBeenCalledWith(['/AdminScreen']);
   });
 });

@@ -38,6 +38,7 @@ describe('ViewAllTicketsComponent', () => {
   beforeEach(() => {
     httpMock = TestBed.inject(HttpTestingController);
     component = TestBed.createComponent(ViewAllTicketsComponent).componentInstance;
+    component.reload = false
   });
   afterEach(() => {
     httpMock.verify();
