@@ -45,7 +45,6 @@ export class ViewAllTicketsComponent implements OnInit {
   //Translates tickets to a form that the front-end can display
   translatePendingTickets(): void {
     this.getPendingTickets().subscribe((data: any) => {
-      console.log(data);
       this.FoundTickets = data;
     });
   }
