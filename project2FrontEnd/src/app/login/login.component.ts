@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
             this.invalidLogin = false;
             this.router.navigate(["/afterLogin"]);
           },
-          error: (err: HttpErrorResponse) => this.invalidLogin = true
+          error: (err: HttpErrorResponse) => alert("Invalid credentials")
         })
     }
     this.invalidLogin = true
