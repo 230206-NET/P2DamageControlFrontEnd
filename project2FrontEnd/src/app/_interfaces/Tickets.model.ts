@@ -1,4 +1,5 @@
-export interface Tickets{
+//The interface allowing for retrieval of tickets
+export interface Tickets {
     id: number;
     clientId: number;
     amount: number;
@@ -7,6 +8,6 @@ export interface Tickets{
     damageDate: Date;
     description: string;
     damagerId: number;
-    justification: number;
+    justification: string;
     ticketStatus: number;
 }

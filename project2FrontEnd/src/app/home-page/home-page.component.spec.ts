@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { HomePageComponent } from './home-page.component';
+import { JwtDecodingService } from '../services/jwt-decoding.service';
+import { NgModule } from '@angular/core';
+
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -8,8 +11,13 @@ describe('HomePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomePageComponent ]
-    })
+      declarations: [ HomePageComponent ],
+      imports: [ JwtModule.forRoot({ // for JwtHelperService
+        config: {
+          tokenGetter: () => {
+            return '';
+          }
+        }}) ]})
     .compileComponents();
 
     fixture = TestBed.createComponent(HomePageComponent);
@@ -20,4 +28,8 @@ describe('HomePageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it("should logout", () => {
+    component.logOut()
+    expect(localStorage.getItem('jwt')).toBe(null)
+  })
 });

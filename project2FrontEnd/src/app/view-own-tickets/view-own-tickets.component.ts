@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AuthenticatedResponse } from '../_interfaces/AuthenticatedResponse';
 import { Tickets } from '../_interfaces/Tickets.model';
 import jwt_decode from 'jwt-decode';
+import { JwtDecodingService } from '../services/jwt-decoding.service';
 
 type UserId = {
   Id: number;
@@ -15,24 +16,22 @@ type UserId = {
   templateUrl: './view-own-tickets.component.html',
   styleUrls: ['./view-own-tickets.component.scss']
 })
+//Component to allow users to view their own tickets
 export class ViewOwnTicketsComponent implements OnInit{
-  constructor(private http : HttpClient, private router: Router) {}
+  constructor(private http : HttpClient, private router: Router, private jwtDecoder: JwtDecodingService) {}
   info: UserId = {Id: 0}
   FoundTickets : Array<Tickets> = []
   StatusValues : Array<string> = ["Pending", "Approved", "Denied"]
+  //Acceses the JWT token to save the Id to a variable
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('jwt');
       if(token){
-        const decodedToken: any= jwt_decode(token);
-        console.log(decodedToken);
-        const Id = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/serialnumber'];
-        this.info.Id = Id;
-        console.log(this.info.Id);
+        this.info.Id = this.jwtDecoder.getId();
       }      
       this.getOwnTickets();
 
     }    
-  
+  //Retrieves a list of the user's tickets using their JWT Id number, and adds them to a variable to display them
   getOwnTickets() : void{
     this.http.put<AuthenticatedResponse>("http://localhost:5025/ClientViewTickets/GetAllClaims", this.info, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })

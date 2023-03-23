@@ -5,11 +5,13 @@ import { Observable } from 'rxjs';
 import { AuthenticatedResponse } from '../_interfaces/AuthenticatedResponse';
 import { Tickets } from '../_interfaces/Tickets.model';
 import jwt_decode from 'jwt-decode';
+import { JwtDecodingService } from '../services/jwt-decoding.service';
 
 
 type TicketDecision = {
   justification: string;
   userId: number;
+  AccessLevel: number;
   status: number;
   ticketId: number;
 }
@@ -19,42 +21,44 @@ type TicketDecision = {
   styleUrls: ['./view-all-tickets.component.scss']
 })
 export class ViewAllTicketsComponent implements OnInit {
-  constructor(private http : HttpClient, private router: Router) {}
-  FoundTickets : Array<Tickets> = []
+  constructor(private http: HttpClient, private router: Router, private jwtDecoder: JwtDecodingService) { }
+  FoundTickets: Array<Tickets> = []
   info: number = 0
-  StatusValues : Array<string> = ["Pending", "Approved", "Denied"]
+  StatusValues: Array<string> = ["Pending", "Approved", "Denied"]
+  accessLevel: number = 0;
+  //Sets Id and retrieves tickets
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('jwt');
-    if(token){
-      const decodedToken: any= jwt_decode(token);
-      console.log(decodedToken);
-      const Id = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/serialnumber'];
-      this.info = Id;
-    }      
-    this.translatePendingTickets()
-    
-    
-  }
-  getPendingTickets() : Observable<Array<Tickets>>{
-    return this.http.get("http://localhost:5025/EmployeeViewTickets/GetPendingClaims") as Observable<Array<Tickets>>;
+    if (token) {
+      this.info = this.jwtDecoder.getId()
+      if (typeof this.jwtDecoder.getAccessLevel() == 'number')
+        this.accessLevel = this.jwtDecoder.getAccessLevel()
     }
-    
-    translatePendingTickets() : void{
-      this.getPendingTickets().subscribe((data: any) => {
-        console.log(data);
-        this.FoundTickets = data;
-      });
+    this.translatePendingTickets()
   }
-  approveTicket(ticketId :number, decision: number) : void{
-    let finalDecision : TicketDecision = {
+  //Retrieves all tickets from Back-End
+  getPendingTickets(): Observable<Array<Tickets>> {
+    return this.http.get("http://localhost:5025/EmployeeViewTickets/GetPendingClaims") as Observable<Array<Tickets>>;
+  }
+  //Translates tickets to a form that the front-end can display
+  translatePendingTickets(): void {
+    this.getPendingTickets().subscribe((data: any) => {
+      console.log(data);
+      this.FoundTickets = data;
+    });
+  }
+  //Rules on tickets based on the decision passed in
+  approveTicket(ticketId: number, decision: number): void {
+    let finalDecision: TicketDecision = {
       userId: this.info,
-      status : decision,
-      ticketId : ticketId,
+      status: decision,
+      ticketId: ticketId,
+      AccessLevel: this.accessLevel,
       justification: "Filler Value"
     }
     console.log(finalDecision);
     this.http.put<AuthenticatedResponse>("http://localhost:5025/EmployeeViewTickets/UpdateTicketStatus", finalDecision, {
-      headers: new HttpHeaders({"Content-Type":"application/json"})
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
     }).subscribe({
       next: (response: AuthenticatedResponse) => {
         this.router.navigate(["/ViewClaims"])
@@ -62,5 +66,5 @@ export class ViewAllTicketsComponent implements OnInit {
       }, error: (err: HttpErrorResponse) => console.log(err)
     })
   }
-  }
+}
 
