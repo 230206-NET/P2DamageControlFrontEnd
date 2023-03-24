@@ -39,7 +39,7 @@ export class TicketFormComponent implements OnInit {
           const response = await this.getDamageId(this.DamagerName).then((value: number) => {
             this.NewClaim.DamagerId = value;
           })
-          await this.http.post<AuthenticatedResponse>("http://localhost:5025/TicketForm/SubmitClaim", this.NewClaim, {
+          await this.http.post<AuthenticatedResponse>("https://damagecontrolbackend.azurewebsites.net/TicketForm/SubmitClaim", this.NewClaim, {
             headers: new HttpHeaders({ "Content-Type": "application/json" })
           })
             .subscribe({
