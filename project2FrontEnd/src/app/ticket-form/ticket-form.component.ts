@@ -23,7 +23,7 @@ export class TicketFormComponent implements OnInit {
     DamagerId: 0,
     Description: ''
   }
-  token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3NlcmlhbG51bWJlciI6IjMiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNk9mQ3Jvd3MiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJLYXogQnJla2tlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IjEiLCJleHAiOjE2Nzk0NDA0MDIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAyNSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAyNSJ9.0AWxosew_Q0MoCyq00ZAd2-aGdiwMHs7kNCWpCM1h84"
+  token: any = localStorage.getItem('jwt');
   DamagerName: string = '';
   constructor(public router: Router, private http: HttpClient) { }
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class TicketFormComponent implements OnInit {
           const response = await this.getDamageId(this.DamagerName).then((value: number) => {
             this.NewClaim.DamagerId = value;
           })
-          await this.http.post<AuthenticatedResponse>("https://damagecontrolbackend.azurewebsites.net/TicketForm/SubmitClaim", this.NewClaim, {
+          await this.http.post<AuthenticatedResponse>("http://localhost:5025/TicketForm/SubmitClaim", this.NewClaim, {
             headers: new HttpHeaders({ "Content-Type": "application/json" })
           })
             .subscribe({
