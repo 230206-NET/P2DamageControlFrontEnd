@@ -23,10 +23,11 @@ export class TicketFormComponent implements OnInit {
     DamagerId: 0,
     Description: ''
   }
-  token: any = localStorage.getItem('jwt');
+  token!: string | null;
   DamagerName: string = '';
   constructor(public router: Router, private http: HttpClient) { }
   ngOnInit(): void {
+    this.token = localStorage.getItem("jwt")
   }
   submitClaim = async (form: NgForm) => {
     if (form.valid) {
