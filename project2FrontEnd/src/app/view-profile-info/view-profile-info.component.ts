@@ -50,7 +50,7 @@ export class ViewProfileInfoComponent implements OnInit {
   }
   //Retrieves the info from the user's profile. Password will not be included
   async getProfileInfo(): Promise<void> {
-    this.http.post<AuthenticatedResponse>("http://localhost:5025/Information/Info", this.info, {
+    this.http.post<AuthenticatedResponse>("https://damagecontrolbackend.azurewebsites.net/Information/Info", this.info, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     })
       .subscribe((data: any) => {
@@ -62,7 +62,7 @@ export class ViewProfileInfoComponent implements OnInit {
   //Changes the current user's info to match what was entered into the relevant fields
   profile = (form: NgForm) => {
     if (form.valid) {
-      this.http.put<AuthenticatedResponse>("http://localhost:5025/Information/ChangeInfo", this.userInfo, {
+      this.http.put<AuthenticatedResponse>("https://damagecontrolbackend.azurewebsites.net/Information/ChangeInfo", this.userInfo, {
         headers: new HttpHeaders({ "Content-Type": "application/json" })
       })
         .subscribe({

@@ -17,29 +17,29 @@ type UserId = {
   styleUrls: ['./view-own-tickets.component.scss']
 })
 //Component to allow users to view their own tickets
-export class ViewOwnTicketsComponent implements OnInit{
-  constructor(private http : HttpClient, private router: Router, private jwtDecoder: JwtDecodingService) {}
-  info: UserId = {Id: 0}
-  FoundTickets : Array<Tickets> = []
-  StatusValues : Array<string> = ["Pending", "Approved", "Denied"]
+export class ViewOwnTicketsComponent implements OnInit {
+  constructor(private http: HttpClient, private router: Router, private jwtDecoder: JwtDecodingService) { }
+  info: UserId = { Id: 0 }
+  FoundTickets: Array<Tickets> = []
+  StatusValues: Array<string> = ["Pending", "Approved", "Denied"]
   //Acceses the JWT token to save the Id to a variable
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('jwt');
-      if(token){
-        this.info.Id = this.jwtDecoder.getId();
-      }      
-      this.getOwnTickets();
+    if (token) {
+      this.info.Id = this.jwtDecoder.getId();
+    }
+    this.getOwnTickets();
 
-    }    
+  }
   //Retrieves a list of the user's tickets using their JWT Id number, and adds them to a variable to display them
-  getOwnTickets() : void{
-    this.http.put<AuthenticatedResponse>("http://localhost:5025/ClientViewTickets/GetAllClaims", this.info, {
+  getOwnTickets(): void {
+    this.http.put<AuthenticatedResponse>("https://damagecontrolbackend.azurewebsites.net/ClientViewTickets/GetAllClaims", this.info, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
 
     })
-    .subscribe((data: any) => {
-      this.FoundTickets = data as Array<Tickets>;
-    });
-    }
+      .subscribe((data: any) => {
+        this.FoundTickets = data as Array<Tickets>;
+      });
+  }
 
 }

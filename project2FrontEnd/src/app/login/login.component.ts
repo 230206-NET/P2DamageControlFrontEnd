@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   //Sets up form for login, and transmits the info to the back-end to compare info to DB
   login = (form: NgForm) => {
     if (form.valid) {
-      this.http.post<AuthenticatedResponse>("http://localhost:5025/NewLogIn/LogIn", this.credentials, {
+      this.http.post<AuthenticatedResponse>("https://damagecontrolbackend.azurewebsites.net/NewLogIn/LogIn", this.credentials, {
         headers: new HttpHeaders({ "Content-Type": "application/json" })
       })
         .subscribe({

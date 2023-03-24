@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   register = (form: NgForm) => {
     if (form.valid) {
       console.log(this.info);
-      this.http.post<AuthenticatedResponse>("http://localhost:5025/Register/Register", this.info, {
+      this.http.post<AuthenticatedResponse>("https://damagecontrolbackend.azurewebsites.net/Register/Register", this.info, {
         headers: new HttpHeaders({ "Content-Type": "application/json" })
       })
         .subscribe({

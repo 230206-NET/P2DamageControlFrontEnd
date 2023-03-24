@@ -34,7 +34,7 @@ export class EmployeeAdminComponent implements OnInit {
   }
   //Returns an observable containing all users
   retrieveEmployees(): Observable<Array<Employees>> {
-    return this.http.get("http://localhost:5025/EmployeeAdmin/GetAllUsers") as Observable<Array<Employees>>
+    return this.http.get("https://damagecontrolbackend.azurewebsites.net/EmployeeAdmin/GetAllUsers") as Observable<Array<Employees>>
   }
   //Translates the observable containing all users to a format that can be displayed
   translateEmployees(): void {
@@ -49,7 +49,7 @@ export class EmployeeAdminComponent implements OnInit {
       accessLevel: newLevel,
       adminId: this.jwtDecoder.getId()
     }
-    this.http.put<AuthenticatedResponse>("http://localhost:5025/EmployeeAdmin/UpdateUserAccessLevel", updatedEmployee, {
+    this.http.put<AuthenticatedResponse>("https://damagecontrolbackend.azurewebsites.net/EmployeeAdmin/UpdateUserAccessLevel", updatedEmployee, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     }).subscribe({
       next: (response: AuthenticatedResponse) => {

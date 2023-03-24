@@ -40,7 +40,7 @@ export class ViewAllTicketsComponent implements OnInit {
   }
   //Retrieves all tickets from Back-End
   getPendingTickets(): Observable<Array<Tickets>> {
-    return this.http.get("http://localhost:5025/EmployeeViewTickets/GetPendingClaims") as Observable<Array<Tickets>>;
+    return this.http.get("https://damagecontrolbackend.azurewebsites.net/EmployeeViewTickets/GetPendingClaims") as Observable<Array<Tickets>>;
   }
   //Translates tickets to a form that the front-end can display
   translatePendingTickets(): void {
@@ -58,7 +58,7 @@ export class ViewAllTicketsComponent implements OnInit {
       justification: this.justification
     }
     console.log(finalDecision);
-    this.http.put<AuthenticatedResponse>("http://localhost:5025/EmployeeViewTickets/UpdateTicketStatus", finalDecision, {
+    this.http.put<AuthenticatedResponse>("https://damagecontrolbackend.azurewebsites.net/EmployeeViewTickets/UpdateTicketStatus", finalDecision, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     }).subscribe({
       next: (response: AuthenticatedResponse) => {

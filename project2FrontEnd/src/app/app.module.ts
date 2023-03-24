@@ -48,7 +48,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["http://localhost:5025"],
+        allowedDomains: ["https://https://damagecontrolbackend.azurewebsites.net/"],
         disallowedRoutes: []
       }
     })
